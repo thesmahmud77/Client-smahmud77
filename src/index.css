@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* ================ Custom CSS =================== */
+/* Flex items */
+.flexCenter {
+  @apply flex items-center justify-center;
+}
+.flexLeft {
+  @apply flex items-center justify-start;
+}
+.flexRight {
+  @apply flex items-center justify-end;
+}
+/* flex Cols */
+.flexCenterCols {
+  @apply flex items-center justify-center flex-col;
+}
+.flexLeftCols {
+  @apply flex items-center justify-start flex-col;
+}
+.flexRightCols {
+  @apply flex items-center justify-end flex-col;
+}
