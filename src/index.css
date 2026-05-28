@@ -1,11 +1,13 @@
 /* ১. সবার আগে imports */
 @import "tailwindcss";
-@import "daisyui/daisyui.css";
+* {
+  background-color: #262630;
+  color: white;
+}
 
-/* ২. DaisyUI plugin */
-@plugin "daisyui";
-
-/* ================ Custom CSS =================== */
+/* ==========================================================================
+   ৩. কাস্টম লেআউট ইউটিলিটি (Flexbox Utilities)
+   ========================================================================== */
 .flexCenter {
   @apply flex items-center justify-center;
 }
@@ -15,16 +17,12 @@
 .flexRight {
   @apply flex items-center justify-end;
 }
+.flexBetween {
+  @apply flex items-center justify-between;
+}
 .flexCenterCols {
-  @apply flex items-center justify-center flex-col;
+  @apply flex flex-col items-center justify-center;
 }
 .flexLeftCols {
-  @apply flex items-center justify-start flex-col;
-}
-.flexRightCols {
-  @apply flex items-center justify-end flex-col;
-}
-
-@utility bgBlack {
-  @apply bg-[#000000] text-white;
+  @apply flex flex-col items-start justify-start;
 }

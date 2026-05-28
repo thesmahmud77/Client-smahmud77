@@ -16,7 +16,7 @@ const Navbar = () => {
           to={"/"}
           className={({ isActive }) =>
             isActive
-              ? "bg-gray-500 font-semibold text-[18px]"
+              ? "bg-gray-500 border-b-2 border-amber-400 font-semibold text-[18px]"
               : "text-gray-500 font-semibold text-[18px]"
           }
         >
@@ -26,7 +26,7 @@ const Navbar = () => {
           to={"/projects"}
           className={({ isActive }) =>
             isActive
-              ? "bg-gray-500 font-semibold text-[18px]"
+              ? "bg-gray-500 border-b-2 border-amber-400 font-semibold text-[18px]"
               : "text-gray-500 font-semibold text-[18px]"
           }
         >
@@ -36,7 +36,7 @@ const Navbar = () => {
           to={"/about-me"}
           className={({ isActive }) =>
             isActive
-              ? "bg-gray-500 font-semibold text-[18px]"
+              ? "bg-gray-500 border-b-2 border-amber-400 font-semibold text-[18px]"
               : "text-gray-500 font-semibold text-[18px]"
           }
         >
@@ -46,7 +46,7 @@ const Navbar = () => {
           to={"/contact"}
           className={({ isActive }) =>
             isActive
-              ? "bg-gray-500 font-semibold text-[18px]"
+              ? "bg-gray-500 border-b-2 border-amber-400 font-semibold text-[18px]"
               : "text-gray-500 font-semibold text-[18px]"
           }
         >
