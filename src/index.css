@@ -1,7 +1,11 @@
+/* ১. সবার আগে imports */
 @import "tailwindcss";
+@import "daisyui/daisyui.css";
+
+/* ২. DaisyUI plugin */
+@plugin "daisyui";
 
 /* ================ Custom CSS =================== */
-/* Flex items */
 .flexCenter {
   @apply flex items-center justify-center;
 }
@@ -11,7 +15,6 @@
 .flexRight {
   @apply flex items-center justify-end;
 }
-/* flex Cols */
 .flexCenterCols {
   @apply flex items-center justify-center flex-col;
 }
@@ -20,4 +23,8 @@
 }
 .flexRightCols {
   @apply flex items-center justify-end flex-col;
+}
+
+@utility bgBlack {
+  @apply bg-[#000000] text-white;
 }

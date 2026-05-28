@@ -1,60 +1,60 @@
 import React from "react";
-import MainContainer from "../Hooks/MainContainer";
+
 import logo from "../assets/logo.png";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="max-w-[1440px] mx-auto grid grid-cols-12">
+    <div className="  grid grid-cols-12 w-ful bgBlack">
       <div className="logo col-span-2 flexLeft">
         <Link to={"/"}>
           <img className="w-12 h-12" src={logo} alt="" />
         </Link>
       </div>
       <div className="navContent col-span-7 flexCenter gap-5">
-        <Link
+        <NavLink
           to={"/"}
           className={({ isActive }) =>
             isActive
-              ? "text-gray-500 font-semibold text-[18px]"
-              : "text-red-500 font-semibold text-[18px]"
+              ? "bg-gray-500 font-semibold text-[18px]"
+              : "text-gray-500 font-semibold text-[18px]"
           }
         >
           Home
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to={"/projects"}
           className={({ isActive }) =>
             isActive
-              ? "text-gray-500 font-semibold text-[18px]"
-              : "text-red-500 font-semibold text-[18px]"
+              ? "bg-gray-500 font-semibold text-[18px]"
+              : "text-gray-500 font-semibold text-[18px]"
           }
         >
           Projects
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to={"/about-me"}
           className={({ isActive }) =>
             isActive
-              ? "text-yellow-500 font-semibold text-[18px]"
-              : "text-red-500 font-semibold text-[18px]"
+              ? "bg-gray-500 font-semibold text-[18px]"
+              : "text-gray-500 font-semibold text-[18px]"
           }
         >
           About Me
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to={"/contact"}
           className={({ isActive }) =>
             isActive
-              ? "text-gray-500 font-semibold text-[18px]"
-              : "text-red-500 font-semibold text-[18px]"
+              ? "bg-gray-500 font-semibold text-[18px]"
+              : "text-gray-500 font-semibold text-[18px]"
           }
         >
           Contact
-        </Link>
+        </NavLink>
       </div>
       <div className="navButton col-span-3 flexRight gap-5">
-        <button>Resume</button>
+        <button className="primary">Resume</button>
         <button>contact</button>
       </div>
     </div>
