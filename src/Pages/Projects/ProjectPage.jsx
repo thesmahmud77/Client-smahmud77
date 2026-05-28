@@ -1,7 +1,10 @@
 import React from "react";
 import MainContainer from "../../Hooks/MainContainer";
+import useLoader from "../../Hooks/useLoader";
 
 const ProjectPage = () => {
+  const { data, loader } = useLoader();
+  console.log("Fetching Data", data);
   return (
     <MainContainer>
       <main class="w-full bg-[#0B0B0F] text-white min-h-screen py-16 px-6 md:px-12 flex flex-col items-center gap-12">
@@ -9,7 +12,7 @@ const ProjectPage = () => {
           <div class="flex flex-col gap-3 max-w-xl">
             <div class="flex items-center gap-2 text-xs font-semibold tracking-widest text-[#F97316] uppercase">
               <span class="w-6 h-[1px] bg-[#F97316]"></span>
-              My Work
+              My Work {data.length}
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
               All <span class="text-[#F97316]">Projects</span>
