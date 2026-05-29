@@ -1,6 +1,13 @@
 /* ১. সবার আগে imports */
 @import "tailwindcss";
-* {
+/* Wildcard এর বদলে :root এ রাখুন */
+:root {
+  --bg-primary: #262630;
+  --text-primary: #ffffff;
+}
+
+/* শুধু body তে apply করুন */
+body {
   background-color: #262630;
   color: white;
 }
