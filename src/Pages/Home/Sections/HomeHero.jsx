@@ -1,5 +1,13 @@
 import React from "react";
 import heroImg from "../../../assets/my-main-photo.png";
+import { Link } from "react-router";
+import {
+  FaFacebook,
+  FaSquareGithub,
+  FaSquareXTwitter,
+  FaWhatsapp,
+} from "react-icons/fa6";
+import { IoLogoLinkedin, IoMdDownload } from "react-icons/io";
 
 const HomeHero = () => {
   return (
@@ -10,15 +18,14 @@ const HomeHero = () => {
             AVAILABLE FOR WORK
           </div>
 
-          <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight">
-            Hi, I'm <br />
-            <span class="text-[#F97316]">Sajjad</span>
+          <h1 class="text-5xl md:text-6xl font-bold tracking-tight">
+            Md <span class="text-[#F97316]">Mahmudul</span> <br /> Hossain
             <span class="text-xl font-light text-gray-500 ml-3">
-              — Dev & Designer
+              — Web Developer
             </span>
           </h1>
 
-          <div class="flex flex-wrap gap-2 text-xs font-medium text-[#F97316]">
+          {/* <div class="flex flex-wrap gap-2 text-xs font-medium text-[#F97316]">
             <span class="bg-[#1A1A24] border border-[#2E2E3B] px-3 py-1 rounded-md">
               📦 MERN Stack
             </span>
@@ -28,7 +35,7 @@ const HomeHero = () => {
             <span class="bg-[#1A1A24] border border-[#2E2E3B] px-3 py-1 rounded-md">
               🎨 Tailwind CSS
             </span>
-          </div>
+          </div> */}
 
           <p class="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed">
             I specialize in building modern, scalable, and lightning-fast web
@@ -37,11 +44,23 @@ const HomeHero = () => {
           </p>
 
           <div class="flex flex-wrap gap-4 pt-2">
-            <button class="bg-[#F97316] hover:bg-[#EA580C] text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 transition-colors shadow-lg shadow-[#F97316]/10">
+            <button
+              onClick={() => window.open("/projects", "_blank")}
+              className="bg-[#F97316] hover:bg-[#EA580C] text-white font-medium px-6 py-3 rounded-xl cursor-pointer flex items-center gap-2 transition-colors shadow-lg shadow-[#F97316]/10"
+            >
               View My Projects ➔
             </button>
-            <button class="bg-[#121217] border border-[#2E2E3B] hover:border-gray-500 text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 transition-colors">
-              📥 Resume
+
+            <button
+              onClick={() =>
+                window.open(
+                  "https://drive.google.com/file/d/1UM5Sei4fGJ8B1OcjbI134BfN122s9LJB/view?usp=sharing",
+                  "_blank",
+                )
+              }
+              className="bg-[#121217] border border-[#2E2E3B] hover:border-gray-500 text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 transition-colors"
+            >
+              <IoMdDownload /> Resume
             </button>
           </div>
 
@@ -64,39 +83,69 @@ const HomeHero = () => {
             </div>
 
             <div class="flex gap-2">
-              <a
-                href="#"
-                class="w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+              <button
+                onClick={() =>
+                  window.open("https://wa.me/8801921215292", "_blank")
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-[#25D366] transition-colors"
               >
-                🐙
-              </a>
-              <a
-                href="#"
-                class="w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+                <FaWhatsapp />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://github.com/thesmahmud77?tab=repositories",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
               >
-                💼
-              </a>
-              <a
-                href="#"
-                class="w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+                <FaSquareGithub />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://www.facebook.com/smahmud77.dev",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
               >
-                🐦
-              </a>
+                <FaFacebook />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://www.linkedin.com/in/smahmud77/",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+              >
+                <IoLogoLinkedin />
+              </button>
+              <button
+                onClick={() =>
+                  window.open("https://x.com/smahmudul77", "_blank")
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+              >
+                <FaSquareXTwitter />
+              </button>
             </div>
           </div>
         </div>
-
         <div class="flex items-center justify-center lg:justify-end w-full">
           <div class="relative w-full max-w-[400px] aspect-[4/5] bg-[#121217] rounded-3xl p-4 border border-[#2E2E3B]/40 shadow-2xl">
             <div class="w-full h-full rounded-2xl overflow-hidden bg-gray-700">
               <img
-                src="/your-profile-image.jpg"
+                src={heroImg}
                 alt="Sajjad"
                 class="w-full h-full object-cover"
               />
             </div>
 
-            <div class="absolute -top-4 -left-6 bg-[#121217]/90 backdrop-blur-md border border-[#2E2E3B] p-2.5 rounded-xl flex items-center gap-3 shadow-xl hidden sm:flex">
+            <div class="absolute top-15 -left-6 bg-[#121217]/90 backdrop-blur-md border border-[#2E2E3B] p-2.5 rounded-xl flex items-center gap-3 shadow-xl hidden sm:flex">
               <div class="w-8 h-8 bg-black/40 border border-[#2E2E3B] rounded-lg flex items-center justify-center text-[#F97316] text-xs">
                 ▲
               </div>
@@ -113,7 +162,7 @@ const HomeHero = () => {
               </p>
             </div>
 
-            <div class="absolute -bottom-4 -left-6 bg-[#121217]/90 backdrop-blur-md border border-[#2E2E3B] p-2.5 rounded-xl flex items-center gap-3 shadow-xl hidden sm:flex">
+            <div class="absolute bottom-30 -left-6 bg-[#121217]/90 backdrop-blur-md border border-[#2E2E3B] p-2.5 rounded-xl flex items-center gap-3 shadow-xl hidden sm:flex">
               <div class="w-8 h-8 bg-black/40 border border-[#2E2E3B] rounded-lg flex items-center justify-center text-[#F97316] text-sm">
                 📦
               </div>
@@ -125,8 +174,8 @@ const HomeHero = () => {
 
             <div class="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center justify-between">
               <div>
-                <p class="text-sm font-bold">Sajjad</p>
-                <p class="text-[10px] text-gray-400">Full Stack Developer</p>
+                <p class="text-sm font-bold">smahmud77</p>
+                <p class="text-[10px] text-gray-400">Web Developer</p>
               </div>
               <div class="flex items-center gap-1.5 bg-[#F97316]/10 border border-[#F97316]/30 px-2.5 py-1 rounded-full">
                 <span class="w-1.5 h-1.5 bg-[#F97316] rounded-full"></span>

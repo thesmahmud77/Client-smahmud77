@@ -1,4 +1,12 @@
 import React from "react";
+import {
+  FaFacebook,
+  FaSquareGithub,
+  FaSquareXTwitter,
+  FaWhatsapp,
+} from "react-icons/fa6";
+import { IoLogoLinkedin } from "react-icons/io";
+import { IoMailUnread } from "react-icons/io5";
 
 const HomeIdea = () => {
   return (
@@ -72,30 +80,62 @@ const HomeIdea = () => {
           <div class="w-full border-t border-gray-800/60 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10 text-xs text-gray-400">
             <div class="flex flex-wrap justify-center sm:justify-start gap-6">
               <span class="flex items-center gap-2">
-                📧 your.email@example.com
+                <IoMailUnread />
+                <p>mahmudsazzad77@gmail.com</p>
               </span>
               <span class="flex items-center gap-2">📍 Dhaka, Bangladesh</span>
             </div>
 
             <div class="flex gap-2">
-              <a
-                href="#"
-                class="w-8 h-8 flex items-center justify-center bg-[#1A1A24] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://github.com/thesmahmud77?tab=repositories",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
               >
-                🐙
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 flex items-center justify-center bg-[#1A1A24] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+                <FaSquareGithub />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://www.facebook.com/smahmud77.dev",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
               >
-                💼
-              </a>
-              <a
-                href="#"
-                class="w-8 h-8 flex items-center justify-center bg-[#1A1A24] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+                <FaFacebook />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://www.linkedin.com/in/smahmud77/",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
               >
-                🐦
-              </a>
+                <IoLogoLinkedin />
+              </button>
+              <button
+                onClick={() =>
+                  window.open("https://x.com/smahmudul77", "_blank")
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+              >
+                <FaSquareXTwitter />
+              </button>
+              <button
+                onClick={() =>
+                  window.open("https://wa.me/8801921215292", "_blank")
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-[#25D366] transition-colors"
+              >
+                <FaWhatsapp />
+              </button>
             </div>
           </div>
         </div>
