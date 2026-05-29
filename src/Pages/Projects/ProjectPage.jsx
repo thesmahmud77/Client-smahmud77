@@ -24,7 +24,7 @@ const ProjectPage = () => {
 
   return (
     <MainContainer>
-      <main className="w-full min-h-screen py-16 px-6 md:px-12 flex flex-col items-center gap-12">
+      <main className=" bg-black w-full min-h-screen py-16 px-6 md:px-12 flex flex-col items-center gap-12">
         <div className="w-full flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 border-b border-gray-500/20 pb-12">
           <div className="flex flex-col gap-3 max-w-xl">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">

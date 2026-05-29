@@ -1,4 +1,6 @@
 import React from "react";
+import { FaGithubSquare } from "react-icons/fa";
+import { TbServerSpark } from "react-icons/tb";
 import { Link } from "react-router";
 
 const ProjectCard = ({ singleProject }) => {
@@ -28,33 +30,37 @@ const ProjectCard = ({ singleProject }) => {
           {projectType}
         </span>
       </div>
-      <div class="flex items-center justify-center gap-5 mt-2 text-xs mt-5">
-        <a
-          href={liveLink}
-          class="text-gray-500 border-2 border-amber-400 px-3 py-2 rounded-2xl"
-        >
-          ↗️ Live Demo
-        </a>
-        <a
-          href={sourceLink}
-          class="text-gray-500 border-2 border-amber-400 px-3 py-2 rounded-2xl"
-        >
-          🐙 Source Code
-        </a>
-      </div>
-      <div class="p-6 flex flex-col flex-grow gap-4">
-        <h3 class="text-lg font-bold text-white tracking-tight">{title}</h3>
-        <ul class="text-xs text-gray-400 flex flex-col gap-2 list-disc list-inside">
-          {features.map((projectFeature) => (
-            <li>{projectFeature}</li>
-          ))}
-        </ul>
-        <div class="flex flex-wrap gap-1.5 mt-2">
+      <div className="my-2 mx-10">
+        <div class="flex flex-wrap items-center justify-start gap-1.5 mt-2">
           {technologies.map((projectTechnology) => (
-            <span class="bg-[#1A1A24] border-2 border-amber-400/70 px-2.5 py-1 rounded-md text-[10px] font-medium text-gray-400">
+            <span class="bg-[#1A1A24] border-2 border-amber-400/50 px-2.5 py-1 rounded-md text-[10px] font-medium text-gray-400 flex items-center justify-start">
               {projectTechnology}
             </span>
           ))}
+        </div>
+
+        <div class="flex flex-col flex-grow gap-4 mt-2">
+          <h3 class="text-lg font-bold text-white tracking-tight">{title}</h3>
+          <ul class="text-xs text-gray-400 flex flex-col gap-2 list-disc list-inside">
+            {features.map((projectFeature) => (
+              <li>{projectFeature}</li>
+            ))}
+          </ul>
+
+          <div class="flex items-center justify-start gap-5 mt-2 text-xs my-3">
+            <a
+              href={liveLink}
+              class="text-gray-500 border-2 border-amber-400 px-3 py-2 rounded-2xl flex items-center justify-center gap-2"
+            >
+              <TbServerSpark /> Live Demo
+            </a>
+            <a
+              href={sourceLink}
+              class="text-gray-500 border-2 border-amber-400 px-3 py-2 rounded-2xl flex items-center justify-center  gap-2"
+            >
+              <FaGithubSquare /> Source Code
+            </a>
+          </div>
         </div>
       </div>
     </Link>

@@ -5,6 +5,8 @@ import ProjectPage from "../Pages/Projects/ProjectPage";
 import AboutMe from "../Pages/About-Me/AboutMe";
 import ContactMe from "../Pages/Contact/ContactMe";
 import ProjectDetails from "../Pages/Projects/ProjectDetails";
+import Login from "../Pages/Auth/Login";
+import Register from "../Pages/Auth/Register";
 
 export const router = createBrowserRouter([
   {
@@ -26,5 +28,13 @@ export const router = createBrowserRouter([
   {
     path: "/project/:id",
     element: <ProjectDetails></ProjectDetails>,
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
   },
 ]);
