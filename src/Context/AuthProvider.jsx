@@ -8,10 +8,10 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { auth } from "../Firebase.config";
+import { auth } from "../Firebase/Firebase.config";
 
 const provider = new GoogleAuthProvider();
-const AuthProvider = () => {
+const AuthProvider = ({ children }) => {
   const [user, SetUser] = useState(null);
   const [loading, setLoading] = useState(true);
   console.log(user);
@@ -53,7 +53,7 @@ const AuthProvider = () => {
     setLoading,
   };
 
-  return <AuthContext value={AuthInfo}></AuthContext>;
+  return <AuthContext value={AuthInfo}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
