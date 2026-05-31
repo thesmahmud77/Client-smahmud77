@@ -1,12 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import MainContainer from "../../Hooks/MainContainer";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Login = () => {
-  const { signInWithGoogle, SetUser, signInUser } = useContext(AuthContext);
+  const { signInWithGoogle, SetUser, signInUser, user } =
+    useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // ✅ JWT verify — user login হলে backend-এ check করো
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`http://localhost:8080/user?email=${user.email}`, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("User verified:", data);
+        })
+        .catch((err) => console.error("Token verify failed:", err));
+    }
+  }, [user]);
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -78,11 +95,39 @@ const Login = () => {
               </button>
             </fieldset>
           </form>
+
           <button
+            class="btn bg-white text-black border-[#e5e5e5] flex items-center justify-center gap-2 mx-auto px-3 py-2 cursor-pointer"
             onClick={handleGoogleSignIn}
-            className="btnPrimary py-2 w-70 mt-2 cursor-pointer"
           >
-            Google SignIn
+            <svg
+              aria-label="Google logo"
+              width="16"
+              height="16"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <g>
+                <path d="m0 0H512V512H0" fill="#fff"></path>
+                <path
+                  fill="#34a853"
+                  d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                ></path>
+                <path
+                  fill="#4285f4"
+                  d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                ></path>
+                <path
+                  fill="#fbbc02"
+                  d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                ></path>
+                <path
+                  fill="#ea4335"
+                  d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                ></path>
+              </g>
+            </svg>
+            Login with Google
           </button>
           <p className="text-[14px] mt-3">
             if You Are Not Registered,

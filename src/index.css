@@ -1,5 +1,6 @@
-/* ১. সবার আগে imports */
 @import "tailwindcss";
+@import "daisyui/daisyui.css";
+
 /* Wildcard এর বদলে :root এ রাখুন */
 :root {
   --bg-primary: #262630;
@@ -8,7 +9,7 @@
 
 /* শুধু body তে apply করুন */
 body {
-  background-color: #262630;
+  background-color: black;
   color: white;
 }
 

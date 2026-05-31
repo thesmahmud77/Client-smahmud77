@@ -1,5 +1,8 @@
 import React from "react";
 import MainContainer from "../../Hooks/MainContainer";
+import { MdAddLocationAlt, MdMarkEmailUnread } from "react-icons/md";
+import { PiPhoneCallFill } from "react-icons/pi";
+import UseLogo from "../../Hooks/useLogo";
 
 const ContactMe = () => {
   return (
@@ -25,21 +28,21 @@ const ContactMe = () => {
             <div class="flex flex-col gap-4 w-full">
               <div class="bg-[#121217] border border-[#1F1F29] p-4 rounded-2xl flex items-center gap-4">
                 <div class="w-10 h-10 rounded-xl bg-[#1A1A24] border border-[#2E2E3B] flex items-center justify-center text-[#F97316]">
-                  ✉️
+                  <MdMarkEmailUnread />
                 </div>
                 <div>
                   <p class="text-[10px] uppercase tracking-wider text-gray-500 font-medium">
                     Email
                   </p>
                   <p class="text-sm font-semibold text-white">
-                    your.email@example.com
+                    mahmudsazzad77@gmail.com
                   </p>
                 </div>
               </div>
 
               <div class="bg-[#121217] border border-[#1F1F29] p-4 rounded-2xl flex items-center gap-4">
                 <div class="w-10 h-10 rounded-xl bg-[#1A1A24] border border-[#2E2E3B] flex items-center justify-center text-[#F97316]">
-                  📍
+                  <MdAddLocationAlt />
                 </div>
                 <div>
                   <p class="text-[10px] uppercase tracking-wider text-gray-500 font-medium">
@@ -53,13 +56,13 @@ const ContactMe = () => {
 
               <div class="bg-[#121217] border border-[#1F1F29] p-4 rounded-2xl flex items-center gap-4">
                 <div class="w-10 h-10 rounded-xl bg-[#1A1A24] border border-[#2E2E3B] flex items-center justify-center text-[#F97316]">
-                  🕒
+                  <PiPhoneCallFill />
                 </div>
                 <div>
                   <p class="text-[10px] uppercase tracking-wider text-gray-500 font-medium">
-                    Response Time
+                    Call
                   </p>
-                  <p class="text-sm font-semibold text-white">&lt; 24 Hours</p>
+                  <p class="text-sm font-semibold text-white">01921215292</p>
                 </div>
               </div>
             </div>
@@ -68,26 +71,7 @@ const ContactMe = () => {
               <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                 Find me on
               </p>
-              <div class="flex flex-wrap gap-2.5">
-                <a
-                  href="#"
-                  class="bg-[#121217] border border-[#1F1F29] hover:border-gray-600 px-4 py-2 rounded-xl text-xs font-semibold text-gray-300 flex items-center gap-2 transition-all"
-                >
-                  🐙 GitHub
-                </a>
-                <a
-                  href="#"
-                  class="bg-[#121217] border border-[#1F1F29] hover:border-gray-600 px-4 py-2 rounded-xl text-xs font-semibold text-gray-300 flex items-center gap-2 transition-all"
-                >
-                  💼 LinkedIn
-                </a>
-                <a
-                  href="#"
-                  class="bg-[#121217] border border-[#1F1F29] hover:border-gray-600 px-4 py-2 rounded-xl text-xs font-semibold text-gray-300 flex items-center gap-2 transition-all"
-                >
-                  🐦 Twitter
-                </a>
-              </div>
+              <UseLogo></UseLogo>
             </div>
 
             <div class="flex items-center gap-2 border border-[#F97316]/30 bg-[#F97316]/5 w-fit px-4 py-2.5 rounded-full mt-2">

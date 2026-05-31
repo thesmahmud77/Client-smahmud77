@@ -1,4 +1,7 @@
 import React from "react";
+import { FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { FaSquareGithub, FaSquareXTwitter } from "react-icons/fa6";
+import { IoLogoLinkedin } from "react-icons/io";
 
 const Footer = () => {
   return (
@@ -12,7 +15,7 @@ const Footer = () => {
               </div>
               <div class="flex flex-col">
                 <span class="text-base font-bold tracking-tight text-white">
-                  Sajjad.
+                  smahmud77
                 </span>
                 <span class="text-[11px] text-gray-500 font-medium">
                   Full Stack Web Developer
@@ -20,40 +23,56 @@ const Footer = () => {
               </div>
             </div>
 
-            <nav class="flex flex-wrap items-center gap-6 md:gap-8 text-sm text-gray-400 font-medium">
-              <a href="#" class="hover:text-white transition-colors">
-                Home
-              </a>
-              <a href="#" class="hover:text-white transition-colors">
-                Projects
-              </a>
-              <a href="#" class="hover:text-white transition-colors">
-                About
-              </a>
-              <a href="#" class="hover:text-white transition-colors">
-                Contact
-              </a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-              <a
-                href="#"
-                class="w-9 h-9 flex items-center justify-center bg-transparent border border-[#1F1F29] hover:border-gray-500 rounded-full text-gray-400 hover:text-white transition-all text-sm"
+            <div class="flex gap-2">
+              <button
+                onClick={() =>
+                  window.open("https://wa.me/8801921215292", "_blank")
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-[#25D366] transition-colors"
               >
-                🐙
-              </a>
-              <a
-                href="#"
-                class="w-9 h-9 flex items-center justify-center bg-transparent border border-[#1F1F29] hover:border-gray-500 rounded-full text-gray-400 hover:text-white transition-all text-sm"
+                <FaWhatsapp />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://github.com/thesmahmud77?tab=repositories",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
               >
-                💼
-              </a>
-              <a
-                href="#"
-                class="w-9 h-9 flex items-center justify-center bg-transparent border border-[#1F1F29] hover:border-gray-500 rounded-full text-gray-400 hover:text-white transition-all text-sm"
+                <FaSquareGithub />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://www.facebook.com/smahmud77.dev",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
               >
-                🐦
-              </a>
+                <FaFacebook />
+              </button>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://www.linkedin.com/in/smahmud77/",
+                    "_blank",
+                  )
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+              >
+                <IoLogoLinkedin />
+              </button>
+              <button
+                onClick={() =>
+                  window.open("https://x.com/smahmudul77", "_blank")
+                }
+                className="cursor-pointer w-9 h-9 flex items-center justify-center bg-[#121217] border border-[#2E2E3B] rounded-lg text-gray-400 hover:text-white transition-colors"
+              >
+                <FaSquareXTwitter />
+              </button>
             </div>
           </div>
 

@@ -1,5 +1,7 @@
 import React from "react";
 import MainContainer from "../../Hooks/MainContainer";
+import myPic from "../../../src/assets/my-main-photo.png";
+import { IoMdDownload } from "react-icons/io";
 
 const AboutMe = () => {
   return (
@@ -10,13 +12,13 @@ const AboutMe = () => {
             <div class="relative w-full max-w-[380px] aspect-square bg-[#121217] rounded-3xl p-4 border border-[#1F1F29] shadow-2xl">
               <div class="w-full h-full rounded-2xl overflow-hidden bg-gray-800">
                 <img
-                  src="/your-profile-image.jpg"
+                  src={myPic}
                   alt="Sajjad"
                   class="w-full h-full object-cover"
                 />
               </div>
 
-              <div class="absolute -top-4 -right-4 bg-[#121217] border border-[#2E2E3B] py-1.5 px-3.5 rounded-xl font-bold flex items-center gap-2 shadow-xl">
+              <div class="absolute top-10 -left-4 bg-[#121217] border border-[#2E2E3B] py-1.5 px-3.5 rounded-xl font-bold flex items-center gap-2 shadow-xl">
                 <span class="text-[#F97316] text-sm">⭐</span>
                 <div class="text-left">
                   <p class="text-xs font-bold leading-none">20+</p>
@@ -26,7 +28,7 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              <div class="absolute bottom-12 -right-4 bg-[#121217] border border-[#2E2E3B] py-1.5 px-3.5 rounded-xl font-bold flex items-center gap-2 shadow-xl">
+              <div class="absolute bottom-30 -right-5 bg-[#121217] border border-[#2E2E3B] py-1.5 px-3.5 rounded-xl font-bold flex items-center gap-2 shadow-xl">
                 <span class="text-[#F97316] text-sm">🌟</span>
                 <div class="text-left">
                   <p class="text-xs font-bold leading-none">2+</p>
@@ -100,12 +102,24 @@ const AboutMe = () => {
               </span>
             </div>
 
-            <div class="flex flex-wrap gap-4 pt-4">
-              <button class="bg-[#F97316] hover:bg-[#EA580C] text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 transition-colors shadow-lg shadow-[#F97316]/10 text-sm">
+            <div class="flex flex-wrap gap-4 pt-2">
+              <button
+                onClick={() => window.open("/projects", "_blank")}
+                className="bg-[#F97316] hover:bg-[#EA580C] text-white font-medium px-6 py-3 rounded-xl cursor-pointer flex items-center gap-2 transition-colors shadow-lg shadow-[#F97316]/10"
+              >
                 View My Projects ➔
               </button>
-              <button class="bg-[#121217] border border-[#2E2E3B] hover:border-gray-500 text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 transition-colors text-sm">
-                📥 Download Resume
+
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://drive.google.com/file/d/1UM5Sei4fGJ8B1OcjbI134BfN122s9LJB/view?usp=sharing",
+                    "_blank",
+                  )
+                }
+                className="bg-[#121217] border border-[#2E2E3B] hover:border-gray-500 text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 transition-colors"
+              >
+                <IoMdDownload /> Resume
               </button>
             </div>
           </div>

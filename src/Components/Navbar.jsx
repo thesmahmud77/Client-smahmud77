@@ -77,16 +77,28 @@ const Navbar = () => {
       </div>
       <div className="navButton col-span-3 flexRight gap-5">
         {user ? (
-          <button
-            className={
-              " font-semibold px-5 py-2 rounded-[5px] border-2 border-gray-300"
-            }
-            onClick={() => handleLogout()}
-          >
-            Logout
-          </button>
+          <div className="flex items-center justify-center gap-5">
+            <button
+              className={
+                " font-semibold px-5 py-2 rounded-[5px] border-2 border-gray-300"
+              }
+              onClick={() => handleLogout()}
+            >
+              Logout
+            </button>
+            <NavLink
+              to={"/deshboard"}
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-gray-500/20 px-5 py-1 rounded-2xl border-b-2 border-amber-400/40 font-semibold text-[18px]"
+                  : "text-gray-500 font-semibold text-[18px]"
+              }
+            >
+              Deshboard
+            </NavLink>
+          </div>
         ) : (
-          <div>
+          <div className="flex items-center justify-center gap-5">
             <NavLink
               to={"/login"}
               className={({ isActive }) =>
