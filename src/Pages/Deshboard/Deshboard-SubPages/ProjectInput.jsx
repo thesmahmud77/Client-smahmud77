@@ -1,263 +1,348 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const ProjectInput = () => {
+  // useForm ইনিশিয়ালাইজ করা হলো
+  const { register, handleSubmit, setValue } = useForm();
+
+  // ১. Features এবং Technologies এর জন্য আলাদা দুটি Array State
+  const [features, setFeatures] = useState([
+    "Firebase Authentication",
+    "MongoDB Integration",
+    "HeroUI Components",
+    "Live Dashboard",
+  ]);
+
+  const [technologies, setTechnologies] = useState([
+    "Next.js",
+    "MongoDB",
+    "Firebase",
+    "HeroUI",
+  ]);
+
+  // ২. কাস্টম স্টেটের ডাটাগুলো নিয়মিত useForm-এর সাথে সিঙ্ক (Sync) রাখার জন্য useEffect
+  useEffect(() => {
+    setValue("features", features);
+  }, [features, setValue]);
+
+  useEffect(() => {
+    setValue("technologies", technologies);
+  }, [technologies, setValue]);
+
+  // ৩. কি-বোর্ডের Enter বাটন প্রেস করে নতুন ট্যাগ যোগ করার ফাংশন
+  const handleAddTag = (e, type) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // ফর্ম যেন সাবমিট না হয়ে যায়
+      const value = e.target.value.trim();
+
+      if (value) {
+        if (type === "features" && !features.includes(value)) {
+          setFeatures([...features, value]);
+        } else if (type === "technologies" && !technologies.includes(value)) {
+          setTechnologies([...technologies, value]);
+        }
+        e.target.value = ""; // ইনপুট বক্স খালি করা হলো
+      }
+    }
+  };
+
+  // ৪. কোনো ট্যাগের ক্রসে (×) ক্লিক করলে সেটি বাদ দেওয়ার ফাংশন
+  const handleRemoveTag = (indexToRemove, type) => {
+    if (type === "features") {
+      const filtered = features.filter((_, index) => index !== indexToRemove);
+      setFeatures(filtered);
+    } else if (type === "technologies") {
+      const filtered = technologies.filter(
+        (_, index) => index !== indexToRemove,
+      );
+      setTechnologies(filtered);
+    }
+  };
+
+  // মেইন ফর্ম সাবমিট হ্যান্ডলার (সব ডাটা একসাথে এখানে আসবে)
+  const onSubmit = (data) => {
+    console.log("Combined Form Submitted Data:", data);
+    alert("সব ডাটা সফলভাবে সাবমিট হয়েছে! ব্রাউজারের কনসোল চেক করুন।");
+  };
   return (
     <div className="w-full bg-[#0a0a0c] text-gray-200 min-h-screen p-6 md:p-10 font-sans">
-      {/* Admin Panel Header */}
-      <div className="w-full flex flex-col md:flex-row md:items-center md:justify-between border-b border-gray-800 pb-6 mb-8">
-        <div>
-          <p className="text-orange-500 text-xs font-semibold tracking-wider uppercase mb-1">
-            — Admin Panel
-          </p>
-          <h1 className="text-3xl font-bold text-white">
-            Upload <span className="text-orange-500">New Project</span>
-          </h1>
-          <p className="text-gray-400 text-sm mt-1">
-            Fill in the details below. Preview updates live on the right.
-          </p>
-        </div>
-        <div className="flex items-center gap-4 mt-4 md:mt-0">
-          <button
-            type="button"
-            className="px-5 py-2.5 bg-[#16161a] hover:bg-[#222227] border border-gray-800 rounded-lg text-sm font-medium transition cursor-pointer"
-          >
-            Save Draft
-          </button>
-          <button
-            type="button"
-            className="px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-sm font-medium transition shadow-lg shadow-orange-900/20 cursor-pointer"
-          >
-            🚀 Publish Project
-          </button>
-        </div>
-      </div>
-
-      {/* Main Form Elements - Now Full Width */}
-      <form className="w-full space-y-6">
-        {/* 1. Basic Information */}
-        <div className="w-full bg-[#111115] border border-gray-800/60 rounded-xl p-6">
-          <div className="flex items-center gap-3 border-b border-gray-800 pb-4 mb-6">
-            <span className="w-3 h-6 bg-orange-500 rounded-sm"></span>
-            <h2 className="text-lg font-semibold text-white">
+      {/* মেইন ফর্ম স্টার্ট */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="max-w-4xl mx-auto space-y-8"
+      >
+        {/* ===================================================================
+            SECTION 1: BASIC INFORMATION CARD
+           =================================================================== */}
+        <div className="bg-[#0c0d0e] border border-gray-800 rounded-xl p-6 space-y-6">
+          <div className="flex items-center gap-3 border-b border-gray-900 pb-4">
+            <span className="w-4 h-4 bg-orange-600 rounded-md inline-block"></span>
+            <h2 className="text-lg font-semibold tracking-wide text-white">
               Basic Information
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-                Project ID
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Project ID */}
+            <div className="form-control w-full">
+              <label className="label mb-1">
+                <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                  Project ID
+                </span>
               </label>
-              <input
-                type="text"
-                defaultValue="# 03"
-                className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition"
-              />
+              <div className="relative flex items-center">
+                <span className="absolute left-4 text-gray-500 font-bold text-lg">
+                  #
+                </span>
+                <input
+                  type="text"
+                  placeholder="03"
+                  {...register("projectId")}
+                  className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200"
+                />
+              </div>
             </div>
-            <div className="md:col-span-2">
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-                Title
+
+            {/* Title */}
+            <div className="form-control w-full">
+              <label className="label mb-1">
+                <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                  Title
+                </span>
               </label>
-              <input
-                type="text"
-                defaultValue="QurbaniHub"
-                className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition"
-              />
+              <div className="relative flex items-center">
+                <span className="absolute left-4 text-gray-500 font-semibold text-base">
+                  T
+                </span>
+                <input
+                  type="text"
+                  placeholder="QurbaniHub"
+                  {...register("title")}
+                  className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="mt-6">
-            <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-              Description
+          {/* Description */}
+          <div className="form-control w-full">
+            <label className="label mb-1">
+              <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                Description
+              </span>
             </label>
-            <textarea
-              rows="3"
-              defaultValue="A specialized web application built with robust backend integration and seamless Firebase auth."
-              className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition resize-none"
-            ></textarea>
+            <div className="relative flex items-start">
+              <span className="absolute left-4 top-4 text-gray-500 text-sm">
+                ☰
+              </span>
+              <textarea
+                rows="4"
+                placeholder="A specialized web application built with robust backend integration and seamless Firebase auth."
+                {...register("description")}
+                className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200 resize-none"
+              ></textarea>
+            </div>
           </div>
 
-          <div className="mt-6">
-            <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-              Project Type
+          {/* Project Type (Text Input) */}
+          <div className="form-control w-full">
+            <label className="label mb-1">
+              <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                Project Type
+              </span>
             </label>
-            <select className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition appearance-none cursor-pointer">
-              <option value="fullstack">Full Stack</option>
-              <option value="frontend">Frontend</option>
-              <option value="backend">Backend</option>
-              <option value="mobile">Mobile</option>
-              <option value="design">Design</option>
-            </select>
+            <div className="relative flex items-center">
+              <span className="absolute left-4 text-gray-500 text-sm">🥞</span>
+              <input
+                type="text"
+                placeholder="Full Stack"
+                {...register("projectType")}
+                className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200"
+              />
+            </div>
           </div>
         </div>
 
-        {/* 2. Features & Technologies */}
-        <div className="w-full bg-[#111115] border border-gray-800/60 rounded-xl p-6">
-          <div className="flex items-center gap-3 border-b border-gray-800 pb-4 mb-6">
-            <span className="w-3 h-6 bg-orange-500 rounded-sm"></span>
-            <h2 className="text-lg font-semibold text-white">
+        {/* ===================================================================
+            SECTION 2: FEATURES & TECHNOLOGIES CARD (Tag Manager)
+           =================================================================== */}
+        <div className="bg-[#0c0d0e] border border-gray-800 rounded-xl p-6 space-y-6">
+          <div className="flex items-center gap-3 border-b border-gray-900 pb-4">
+            <span className="w-4 h-4 bg-orange-600 rounded-md inline-block"></span>
+            <h2 className="text-lg font-semibold tracking-wide text-white">
               Features & Technologies
             </h2>
           </div>
 
-          <div className="space-y-6">
-            <div>
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
+          {/* Features Tag Input */}
+          <div className="form-control w-full">
+            <label className="label mb-1">
+              <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
                 Features
-              </label>
-              <div className="w-full bg-[#16161a] border border-gray-800 rounded-lg p-2 flex flex-wrap gap-2 items-center">
-                {[
-                  "Firebase Authentication",
-                  "MongoDB Integration",
-                  "HeroUI Components",
-                  "Live Dashboard",
-                ].map((feature, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-[#222227] border border-gray-700 text-xs text-gray-300 px-2.5 py-1 rounded flex items-center gap-1.5"
-                  >
-                    {feature}{" "}
-                    <button
-                      type="button"
-                      className="text-gray-500 hover:text-red-400 font-bold"
-                    >
-                      ×
-                    </button>
-                  </span>
-                ))}
-                <input
-                  type="text"
-                  placeholder="Add feature..."
-                  className="bg-transparent border-none text-xs text-gray-400 focus:outline-none ml-2 flex-1 min-w-[120px]"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-                Technologies
-              </label>
-              <div className="w-full bg-[#16161a] border border-gray-800 rounded-lg p-2 flex flex-wrap gap-2 items-center">
-                {["Next.js", "MongoDB", "Firebase", "HeroUI"].map(
-                  (tech, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-[#222227] border border-gray-700 text-xs text-gray-300 px-2.5 py-1 rounded flex items-center gap-1.5"
-                    >
-                      {tech}{" "}
-                      <button
-                        type="button"
-                        className="text-gray-500 hover:text-red-400 font-bold"
-                      >
-                        ×
-                      </button>
-                    </span>
-                  ),
-                )}
-                <input
-                  type="text"
-                  placeholder="Add technology..."
-                  className="bg-transparent border-none text-xs text-gray-400 focus:outline-none ml-2 flex-1 min-w-[120px]"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 3. Project Image */}
-        <div className="w-full bg-[#111115] border border-gray-800/60 rounded-xl p-6">
-          <div className="flex items-center gap-3 border-b border-gray-800 pb-4 mb-6">
-            <span className="w-3 h-6 bg-orange-500 rounded-sm"></span>
-            <h2 className="text-lg font-semibold text-white">Project Image</h2>
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-              Project Image URL
+              </span>
             </label>
-            <input
-              type="text"
-              placeholder="Paste image URL..."
-              className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition"
-            />
+            <div className="w-full bg-[#131416] border border-gray-800 rounded-lg p-2 flex flex-wrap gap-2 items-center focus-within:border-orange-500 transition-all duration-200">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-1.5 bg-[#1a1b1e] text-gray-300 text-xs font-medium px-3 py-1.5 rounded-md border border-gray-800"
+                >
+                  <span>{feature}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveTag(index, "features")}
+                    className="text-gray-500 hover:text-orange-500 font-bold transition ml-1"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+              <input
+                type="text"
+                placeholder="Add feature..."
+                onKeyDown={(e) => handleAddTag(e, "features")}
+                className="flex-1 bg-transparent border-none outline-none text-sm text-gray-200 py-1 px-2 min-w-[120px]"
+              />
+            </div>
           </div>
 
-          <div className="relative flex flex-col items-center justify-center border-2 border-dashed border-gray-800 hover:border-gray-700 rounded-xl p-8 mt-6 transition bg-[#141418]">
-            <svg
-              className="w-8 h-8 text-gray-500 mb-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+          {/* Technologies Tag Input */}
+          <div className="form-control w-full">
+            <label className="label mb-1">
+              <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                Technologies
+              </span>
+            </label>
+            <div className="w-full bg-[#131416] border border-gray-800 rounded-lg p-2 flex flex-wrap gap-2 items-center focus-within:border-orange-500 transition-all duration-200">
+              {technologies.map((tech, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-1.5 bg-[#1a1b1e] text-gray-300 text-xs font-medium px-3 py-1.5 rounded-md border border-gray-800"
+                >
+                  <span>{tech}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveTag(index, "technologies")}
+                    className="text-gray-500 hover:text-orange-500 font-bold transition ml-1"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+              <input
+                type="text"
+                placeholder="Add technology..."
+                onKeyDown={(e) => handleAddTag(e, "technologies")}
+                className="flex-1 bg-transparent border-none outline-none text-sm text-gray-200 py-1 px-2 min-w-[120px]"
               />
-            </svg>
-            <p className="text-sm text-gray-400 mb-1">Drag & drop image here</p>
-            <p className="text-xs text-gray-500 mb-4">
-              PNG, JPG, WEBP up to 5MB
-            </p>
-            <button
-              type="button"
-              className="px-4 py-1.5 bg-[#1c1c22] hover:bg-[#26262d] border border-gray-700 text-xs text-gray-300 font-medium rounded-md transition cursor-pointer"
-            >
-              Browse Files
-            </button>
+            </div>
           </div>
         </div>
 
-        {/* 4. Links & Dates */}
-        <div className="w-full bg-[#111115] border border-gray-800/60 rounded-xl p-6">
-          <div className="flex items-center gap-3 border-b border-gray-800 pb-4 mb-6">
-            <span className="w-3 h-6 bg-orange-500 rounded-sm"></span>
-            <h2 className="text-lg font-semibold text-white">Links & Dates</h2>
+        {/* ===================================================================
+            SECTION 3: LINKS & DATES CARD
+           =================================================================== */}
+        <div className="bg-[#0c0d0e] border border-gray-800 rounded-xl p-6 space-y-6">
+          <div className="flex items-center gap-3 border-b border-gray-900 pb-4">
+            <span className="w-4 h-4 bg-orange-600 rounded-md inline-block"></span>
+            <h2 className="text-lg font-semibold tracking-wide text-white">
+              Links & Dates
+            </h2>
           </div>
 
+          {/* Live Link এবং Source Link পাশাপাশি */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-                Live Link
+            {/* Live Link */}
+            <div className="form-control w-full">
+              <label className="label mb-1">
+                <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                  Live Link
+                </span>
               </label>
-              <input
-                type="text"
-                defaultValue="https://github.com"
-                className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition"
-              />
+              <div className="relative flex items-center">
+                <span className="absolute left-4 text-gray-500 text-sm">
+                  🔗
+                </span>
+                <input
+                  type="url"
+                  placeholder="https://github.com"
+                  {...register("liveLink")}
+                  className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-                Source Link
+
+            {/* Source Link */}
+            <div className="form-control w-full">
+              <label className="label mb-1">
+                <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                  Source Link
+                </span>
               </label>
-              <input
-                type="text"
-                defaultValue="https://github.com"
-                className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-                Upload Date
-              </label>
-              <input
-                type="text"
-                defaultValue="25-May-2026"
-                className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
-                Publish Date
-              </label>
-              <input
-                type="text"
-                defaultValue="25-May-2026"
-                className="w-full bg-[#16161a] border border-gray-800 rounded-lg px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-orange-500 transition"
-              />
+              <div className="relative flex items-center">
+                <span className="absolute left-4 text-gray-500 text-sm">
+                  🐙
+                </span>
+                <input
+                  type="url"
+                  placeholder="https://github.com"
+                  {...register("sourceLink")}
+                  className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200"
+                />
+              </div>
             </div>
           </div>
+
+          {/* Upload Date এবং Publish Date পাশাপাশি */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Upload Date */}
+            <div className="form-control w-full">
+              <label className="label mb-1">
+                <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                  Upload Date
+                </span>
+              </label>
+              <div className="relative flex items-center">
+                <span className="absolute left-4 text-gray-500 text-sm">
+                  📅
+                </span>
+                <input
+                  type="date"
+                  {...register("uploadDate")}
+                  className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200 cursor-pointer"
+                />
+              </div>
+            </div>
+
+            {/* Publish Date */}
+            <div className="form-control w-full">
+              <label className="label mb-1">
+                <span className="label-text text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                  Publish Date
+                </span>
+              </label>
+              <div className="relative flex items-center">
+                <span className="absolute left-4 text-gray-500 text-sm">
+                  📅
+                </span>
+                <input
+                  type="date"
+                  {...register("publishDate")}
+                  className="w-full bg-[#131416] border border-gray-800 rounded-lg py-3 pl-10 pr-4 text-gray-200 outline-none focus:border-orange-500 transition-all duration-200 cursor-pointer"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* মেইন সাবমিট বাটন */}
+        <div className="flex justify-end pt-4">
+          <button
+            type="submit"
+            className="bg-orange-600 hover:bg-orange-700 text-white font-medium px-8 py-3 rounded-lg transition-all text-sm shadow-lg shadow-orange-900/20 cursor-pointer"
+          >
+            Save All Information
+          </button>
         </div>
       </form>
     </div>
